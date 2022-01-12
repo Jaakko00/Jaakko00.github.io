@@ -7,6 +7,7 @@ import {
   Container,
   Nav,
 } from "react-bootstrap";
+require("dotenv").config();
 
 var filter = require("leo-profanity");
 
@@ -16,6 +17,30 @@ function PostForm(props) {
   const [title, setTitle] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState("");
+
+  /**
+   * randomColor randomly chooses out of 4 bootstrap colors
+   * @returns {string} color
+   */
+  function randomColor() {
+    var randomnumber = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+    if(props.showDeleteButton() === "visible") {
+      return "dark";
+    } else {
+      if (randomnumber === 1) {
+        return "success";
+      }
+      if (randomnumber === 2) {
+        return "danger";
+      }
+      if (randomnumber === 3) {
+        return "warning";
+      } else {
+        return "info";
+      }
+
+    }
+  }
 
   /** onChangeContent sets the state of content with given value */
   const onChangeContent = (e) => {
@@ -41,9 +66,7 @@ function PostForm(props) {
     <>
       <Navbar bg="light" expand={false}>
         <Container fluid>
-          <Navbar.Brand className="display-1">
-            Bullet-in-Board
-          </Navbar.Brand>
+          <Navbar.Brand className="display-1">Bullet-in-Board</Navbar.Brand>
 
           <Form className="d-flex" style={{ width: "20rem" }}>
             <Nav.Link disabled>Admin</Nav.Link>
@@ -134,7 +157,9 @@ function PostForm(props) {
                         //filter.clean filters all profanity of a given string
                         filter.clean(content),
                         filter.clean(sender),
-                        filter.clean(title)
+                        filter.clean(title),
+                        randomColor()
+
                       )
                       //After posting, the state is emptied to avoid doubleposting
                       .then(setContent(""))

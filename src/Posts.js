@@ -35,30 +35,12 @@ class Posts extends React.Component {
    * @param {string} sender
    * @param {string} title
    */
-  async addNewPost(text, sender, title) {
+  async addNewPost(text, sender, title, color) {
     console.log("Adding post");
 
-    /**
-     * randomColor randomly chooses out of 4 bootstrap colors
-     * @returns {string} color
-     */
-    function randomColor() {
-      var randomnumber = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
-      if (randomnumber === 1) {
-        return "success";
-      }
-      if (randomnumber === 2) {
-        return "danger";
-      }
-      if (randomnumber === 3) {
-        return "warning";
-      } else {
-        return "info";
-      }
-    }
+    
 
     let create_time = new Date().toISOString().slice(0, 10);
-    let color = randomColor();
     let newPost = {
       content: text,
       create_time: create_time,
