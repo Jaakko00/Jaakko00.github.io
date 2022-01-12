@@ -58,7 +58,7 @@ function PostForm(props) {
             <Button
               onClick={() => {
                 if (
-                  password === "admin" ||
+                  password === "Admin2110" ||
                   props.showDeleteButton() === "visible"
                 ) {
                   props.showDelete();
@@ -66,7 +66,7 @@ function PostForm(props) {
                   setDisabled(false);
                 }
                 if (
-                  password === "admin" &&
+                  password === "Admin2110" &&
                   props.showDeleteButton() === "invisible"
                 ) {
                   setDisabled(true);
