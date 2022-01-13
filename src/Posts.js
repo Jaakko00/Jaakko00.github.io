@@ -38,8 +38,6 @@ class Posts extends React.Component {
   async addNewPost(text, sender, title, color) {
     console.log("Adding post");
 
-    
-
     let create_time = new Date().toISOString().slice(0, 10);
     let newPost = {
       content: text,
@@ -48,8 +46,11 @@ class Posts extends React.Component {
       title: title,
       color: color,
     };
+
     console.log(newPost);
+
     axios
+      //makes a POST request with the newly created post
       .post("https://bullet-in-board.herokuapp.com/posts", newPost)
       .catch((error) => {
         console.log(error);
@@ -57,6 +58,7 @@ class Posts extends React.Component {
       .then((response) => {
         console.log("Added new post");
         axios
+          //After adding post, makes a GET request for all the posts, and sets them to the state
           .get("https://bullet-in-board.herokuapp.com/posts")
           .then((response) => {
             this.setState({ posts: response.data });
@@ -86,10 +88,17 @@ class Posts extends React.Component {
       });
   }
 
+  /**
+   * handleShowDeleteButton() toggles the boolean state of showDelete
+   */
   handleShowDeleteButton() {
     this.setState(({showDelete}) => ({ showDelete: !showDelete }));
   }
 
+
+  /**
+   * showDeleteButton() returns a React-Boostrap style prop of either "visible" or "invisible"
+   */
   showDeleteButton() {
     if (this.state.showDelete) {
       return "visible";

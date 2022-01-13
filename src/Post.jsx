@@ -2,6 +2,9 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+/**
+ * Post component contains a single posts features
+ */
 function Post(props) {
 
 
@@ -27,7 +30,7 @@ function Post(props) {
           className={props.showDeleteButton()}
           variant="dark"
           color="white"
-          onClick={() => props.delete(props.post)}
+          onClick={() => props.delete(props.post)} //Calls the delete function from Posts.js
         >
           Delete
         </Button>
