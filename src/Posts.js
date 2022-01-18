@@ -92,9 +92,8 @@ class Posts extends React.Component {
    * handleShowDeleteButton() toggles the boolean state of showDelete
    */
   handleShowDeleteButton() {
-    this.setState(({showDelete}) => ({ showDelete: !showDelete }));
+    this.setState(({ showDelete }) => ({ showDelete: !showDelete }));
   }
-
 
   /**
    * showDeleteButton() returns a React-Boostrap style prop of either "visible" or "invisible"
@@ -117,6 +116,8 @@ class Posts extends React.Component {
         showDeleteButton={this.showDeleteButton}
       ></Post>
     ));
+    let loading = <h1 style={{ textAlign: "center" }}>Loading...</h1>;
+
     return (
       <>
         <PostForm
@@ -125,7 +126,9 @@ class Posts extends React.Component {
           showDeleteButton={this.showDeleteButton}
         ></PostForm>
 
-        <Row className="justify-content-center">{posts}</Row>
+        <Row className="justify-content-center">
+          {!posts.length ? loading : posts}
+        </Row>
       </>
     );
   }
